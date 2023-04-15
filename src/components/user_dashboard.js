@@ -1,6 +1,9 @@
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useState } from "react"
-
-function testb() {
+import { faPlusSquare } from '@fortawesome/free-regular-svg-icons';
+// import {fa}
+// import { IconName } from "react-icons/fa";
+function test() {
     console.log("test");
     // setBooking(!booking)
 }
@@ -18,7 +21,7 @@ export default function UserDashboard() {
     };
 
     return (
-        <div className="main" style={{fontFamily:'sans-serif'}}>
+        <div className="main" style={{ fontFamily: 'sans-serif' }}>
             <nav className="navbar navbar-expand-lg bg-body-tertiary">
                 <div className="container-fluid">
                     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
@@ -100,7 +103,7 @@ export default function UserDashboard() {
                                     <th scope="row">3</th>
                                     <td>Larry the Bird</td>
                                     <td>@twitter</td>
-                                    <td>@twitter</td>
+                                    <td>@twitter<FontAwesomeIcon icon={faPlusSquare} /></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -117,7 +120,14 @@ export default function UserDashboard() {
                         <div className="card-header">
                             All Booking Details
                             <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                                <button class="btn btn-primary me-md-2" type="button" style={{fontSize:'20px'}}><b>+</b></button>
+                                {/* <button class="btn me-md-2 bg-primary" type="button" style={{fontSize:'20px',cursor:'pointer'}}><abbr title="New Booking"><b>+</b></abbr></button> */}
+                                <abbr title="New Booking">
+                                    <button class="btn btn-success" onmouseover="console.log('Check Buuton')"
+                                        data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                        {/* <FaRegPlusSquare/> */}
+                                        <FontAwesomeIcon icon={faPlusSquare} />
+                                    </button>
+                                </abbr>
                             </div>
                         </div>
                         <div className="card-body">
@@ -160,6 +170,86 @@ export default function UserDashboard() {
                     </div>
                 )
             }
+
+
+
+            {/* for Modal New Booking */}
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-xl">
+                    <div class="modal-content bg-dark-subtle">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">Register Hear</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body ">
+                            <form class="row g-3">
+                                <div class="col-6">
+                                    <label for="name" class="form-label">Full Name<span>*</span></label>
+                                    <input type="text" class="form-control" id="exampleInputEmail1"
+                                        aria-describedby="emailHelp"/>
+                                </div>
+                                <div class="col-auto">
+                                    <label for="exampleInputEmail1" class="form-label">Contact No.<span>*</span></label>
+                                    <input type="number" class="form-control" id="exampleInputEmail1"
+                                        aria-describedby="emailHelp"/>
+                                </div>
+                                <div class="col-auto">
+                                    <label for="exampleInputEmail1" class="form-label">Emergancy Contact
+                                        No.<span>*</span></label>
+                                    <input type="number" class="form-control" id="exampleInputEmail1"
+                                        aria-describedby="emailHelp"/>
+                                </div>
+                                <div class="col-auto">
+                                    <label for="exampleInputEmail1" class="form-label">Date Of Birth<span>*</span></label>
+                                    <input type="date" class="form-control" style={{outline: 'none', border: 'none'}}/>
+                                </div>
+                                <div class="col-1">
+                                    <label for="exampleInputEmail1" class="form-label">Age<span>*</span></label>
+                                    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                                        disabled/>
+                                </div>
+                                <div class="col-auto">
+                                    <label for="exampleInputEmail1" class="form-label">Gender<span>*</span></label>
+                                    <select class="form-select">
+                                        <option selected>Select Gender</option>
+                                        <option value="m">Male</option>
+                                        <option value="f">Female</option>
+                                        <option value="o">Others</option>
+                                    </select>
+                                </div>
+                                <div class="col-2">
+                                    <label for="exampleInputEmail1" class="form-label">Blood Group<span>*</span></label>
+                                    <input type="text" class="form-control" id="exampleInputEmail1"
+                                        aria-describedby="emailHelp"/>
+                                </div>
+                                <div class="col-5">
+                                    <label for="exampleInputEmail1" class="form-label">Email address<span> (Not
+                                        Required)</span></label>
+                                    <input type="email" class="form-control" id="exampleInputEmail1"
+                                        aria-describedby="emailHelp"/>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="exampleInputEmail1" class="form-label">Full Address<span>*</span></label>
+                                    <input type="text" class="form-control" id="exampleInputEmail1"
+                                        aria-describedby="emailHelp"/>
+                                </div>
+                                <div class="d-grid gap-3 col-2 mx-auto d-md-block">
+                                    <button type="submit" class="btn btn-outline-primary">Submit</button>
+                                    {/* <!-- <button type="reset" class="btn btn-outline-danger justify-content-center">Reset</button> --> */}
+
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="reset" class="btn btn-outline-danger">Reset</button>
+                                </div>
+                            </form>
+                        </div>
+                        {/* <!-- <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary">Save changes</button>
+                        </div> --> */}
+                    </div>
+                </div>
+            </div>
         </div>
     )
 }
