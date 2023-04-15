@@ -11,6 +11,7 @@ function App() {
   const [context, setContext] = useState({
     login: {
       loggedin: false,
+      underlogin: false,
       username: undefined,
       password: undefined,
     }
@@ -36,7 +37,7 @@ function App() {
     <Track/> */}
       <LoginContext.Consumer>
         {(context, setContext) => {
-          if(context.context.login.loggedin) {
+          if(!(context.context.login.underlogin)) {
             return <LandingPage email={context.context.login.username} password={context.context.login.password}/>
           } else {
             if (detail.isLoginPage) return <UserLogin handleClick={(e)=>onSubmitHandle(e)}/>
