@@ -6,19 +6,29 @@ export default function UserLogin() {
     const [login, setLogin] = useState(true);
     const [register, setRegister] = useState(false);
 
-    const [email, setEmail] = useState();
-    const [password, setPassword] = useState();
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
 
     const loginhandler = () => {
-        console.log(email, password);
         setLogin(true);
         setRegister(false);
 
     };
+
     const signuphandler = () => {
         setLogin(false);
         setRegister(true);
     };
+
+    const handleEmailChange = (e) => {
+        setEmail(e.target.value);
+    }
+    const handlePasswordChange = (e) => {
+        const newPassword = e.target.value;
+        setPassword(newPassword, () => {
+            console.log(password); // logs the updated state value
+        });
+    }
 
 
     return (
@@ -28,12 +38,20 @@ export default function UserLogin() {
                 <h1>Login</h1>
                 <form>
                     <div className="textfild">
-                        <input type="email" name="email" onChange={(e) => setEmail(e.target.value)} required />
+                        <input type="email" name="email" onChange={(e) => {
+                            handleEmailChange(e);
+                        }
+                        } required />
                         <span></span>
                         <label>Username</label>
                     </div>
                     <div className="textfild">
-                        <input type="password" name="password" onChange={(e) => setPassword(e.target.value)} required />
+                        <input type="password" name="password" onChange={(e) => {
+                            handlePasswordChange(e)
+                            console.log(password);
+                            
+                            }
+                        } required />
                         <span></span>
                         <label>Password</label>
                     </div>
@@ -43,15 +61,17 @@ export default function UserLogin() {
                     <LoginContext.Consumer>
                         {(context, setContext) =>  {
                             return (<button type="button" id='login' name="submit" onClick={(event) => {
-                                console.log(email, password);
+                                
+                                
                                 context.setContext({
                                     login: {
-                                        loggedin: false,
+                                        loggedin: true,
                                         underlogin: true,
                                         username: email,
                                         password: password
                                     }
                                 })
+                                console.log(context.context.login.email, context.context.login.password);
                                 
                             }}> LogIn </button>)
                         }

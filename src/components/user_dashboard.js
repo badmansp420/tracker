@@ -1,15 +1,37 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import { faPlusSquare } from '@fortawesome/free-regular-svg-icons';
-// import {fa}
-// import { IconName } from "react-icons/fa";
-function test() {
-    console.log("test");
-    // setBooking(!booking)
-}
-export default function UserDashboard() {
+import axios from "axios";
+export default function UserDashboard({ email, password }) {
     const [home, setHome] = useState(true);
     const [booking, setBooking] = useState(false)
+    const [loginData, setLoginData] = useState();
+    const [userData, setUserData] = useState();
+    useEffect(() => {
+        const getLoginData = async () => {
+            console.log(email, password);
+            axios.post('http://127.0.0.1:5000/login', {username: email, password: password}).then((data) => {
+                console.log(data); 
+                setLoginData(data.data);
+            });
+
+            
+        }
+        getLoginData();
+
+        if (loginData) {
+            const getUserData = async () => {
+                const config = {
+                    headers: { Authorization: `Bearer ${loginData.token}` }
+                }
+                const response = await axios.get('http://127.0.0.1:5000/user/me', {}, config)
+                const parsedData = JSON.parse(response);
+                setUserData(parsedData);
+
+            }
+            getUserData();
+        }
+    }, []);
     const bookinghandler = () => {
         setHome(false);
         setBooking(true);
@@ -41,7 +63,7 @@ export default function UserDashboard() {
                     </div>
                     <div className="dropdown mx-5" style={{ color: 'gray' }}>
                         <button className="btn dropdown-toggle" id="profile" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            UserName
+                            {userData === undefined ? <div></div> : userData.email}
                         </button>
                         <ul className="dropdown-menu">
                             <li><a className="dropdown-item" href="#">Profile</a></li>
@@ -119,10 +141,10 @@ export default function UserDashboard() {
                     <div className="card my-4 mx-auto w-75">
                         <div className="card-header">
                             All Booking Details
-                            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                                {/* <button class="btn me-md-2 bg-primary" type="button" style={{fontSize:'20px',cursor:'pointer'}}><abbr title="New Booking"><b>+</b></abbr></button> */}
+                            <div className="d-grid gap-2 d-md-flex justify-content-md-end">
+                                {/* <button className="btn me-md-2 bg-primary" type="button" style={{fontSize:'20px',cursor:'pointer'}}><abbr title="New Booking"><b>+</b></abbr></button> */}
                                 <abbr title="New Booking">
-                                    <button class="btn btn-success" onmouseover="console.log('Check Buuton')"
+                                    <button className="btn btn-success" onmouseover="console.log('Check Buuton')"
                                         data-bs-toggle="modal" data-bs-target="#exampleModal">
                                         {/* <FaRegPlusSquare/> */}
                                         <FontAwesomeIcon icon={faPlusSquare} />
@@ -174,78 +196,78 @@ export default function UserDashboard() {
 
 
             {/* for Modal New Booking */}
-            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-xl">
-                    <div class="modal-content bg-dark-subtle">
-                        <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="exampleModalLabel">Register Hear</h1>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <div className="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div className="modal-dialog modal-xl">
+                    <div className="modal-content bg-dark-subtle">
+                        <div className="modal-header">
+                            <h1 className="modal-title fs-5" id="exampleModalLabel">Register Hear</h1>
+                            <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
-                        <div class="modal-body ">
-                            <form class="row g-3">
-                                <div class="col-6">
-                                    <label for="name" class="form-label">Full Name<span>*</span></label>
-                                    <input type="text" class="form-control" id="exampleInputEmail1"
-                                        aria-describedby="emailHelp"/>
+                        <div className="modal-body ">
+                            <form className="row g-3">
+                                <div className="col-6">
+                                    <label for="name" className="form-label">Full Name<span>*</span></label>
+                                    <input type="text" className="form-control" id="exampleInputEmail1"
+                                        aria-describedby="emailHelp" />
                                 </div>
-                                <div class="col-auto">
-                                    <label for="exampleInputEmail1" class="form-label">Contact No.<span>*</span></label>
-                                    <input type="number" class="form-control" id="exampleInputEmail1"
-                                        aria-describedby="emailHelp"/>
+                                <div className="col-auto">
+                                    <label for="exampleInputEmail1" className="form-label">Contact No.<span>*</span></label>
+                                    <input type="number" className="form-control" id="exampleInputEmail1"
+                                        aria-describedby="emailHelp" />
                                 </div>
-                                <div class="col-auto">
-                                    <label for="exampleInputEmail1" class="form-label">Emergancy Contact
+                                <div className="col-auto">
+                                    <label for="exampleInputEmail1" className="form-label">Emergancy Contact
                                         No.<span>*</span></label>
-                                    <input type="number" class="form-control" id="exampleInputEmail1"
-                                        aria-describedby="emailHelp"/>
+                                    <input type="number" className="form-control" id="exampleInputEmail1"
+                                        aria-describedby="emailHelp" />
                                 </div>
-                                <div class="col-auto">
-                                    <label for="exampleInputEmail1" class="form-label">Date Of Birth<span>*</span></label>
-                                    <input type="date" class="form-control" style={{outline: 'none', border: 'none'}}/>
+                                <div className="col-auto">
+                                    <label for="exampleInputEmail1" className="form-label">Date Of Birth<span>*</span></label>
+                                    <input type="date" className="form-control" style={{ outline: 'none', border: 'none' }} />
                                 </div>
-                                <div class="col-1">
-                                    <label for="exampleInputEmail1" class="form-label">Age<span>*</span></label>
-                                    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-                                        disabled/>
+                                <div className="col-1">
+                                    <label for="exampleInputEmail1" className="form-label">Age<span>*</span></label>
+                                    <input type="text" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                                        disabled />
                                 </div>
-                                <div class="col-auto">
-                                    <label for="exampleInputEmail1" class="form-label">Gender<span>*</span></label>
-                                    <select class="form-select">
+                                <div className="col-auto">
+                                    <label for="exampleInputEmail1" className="form-label">Gender<span>*</span></label>
+                                    <select className="form-select">
                                         <option selected>Select Gender</option>
                                         <option value="m">Male</option>
                                         <option value="f">Female</option>
                                         <option value="o">Others</option>
                                     </select>
                                 </div>
-                                <div class="col-2">
-                                    <label for="exampleInputEmail1" class="form-label">Blood Group<span>*</span></label>
-                                    <input type="text" class="form-control" id="exampleInputEmail1"
-                                        aria-describedby="emailHelp"/>
+                                <div className="col-2">
+                                    <label for="exampleInputEmail1" className="form-label">Blood Group<span>*</span></label>
+                                    <input type="text" className="form-control" id="exampleInputEmail1"
+                                        aria-describedby="emailHelp" />
                                 </div>
-                                <div class="col-5">
-                                    <label for="exampleInputEmail1" class="form-label">Email address<span> (Not
+                                <div className="col-5">
+                                    <label for="exampleInputEmail1" className="form-label">Email address<span> (Not
                                         Required)</span></label>
-                                    <input type="email" class="form-control" id="exampleInputEmail1"
-                                        aria-describedby="emailHelp"/>
+                                    <input type="email" className="form-control" id="exampleInputEmail1"
+                                        aria-describedby="emailHelp" />
                                 </div>
-                                <div class="mb-3">
-                                    <label for="exampleInputEmail1" class="form-label">Full Address<span>*</span></label>
-                                    <input type="text" class="form-control" id="exampleInputEmail1"
-                                        aria-describedby="emailHelp"/>
+                                <div className="mb-3">
+                                    <label for="exampleInputEmail1" className="form-label">Full Address<span>*</span></label>
+                                    <input type="text" className="form-control" id="exampleInputEmail1"
+                                        aria-describedby="emailHelp" />
                                 </div>
-                                <div class="d-grid gap-3 col-2 mx-auto d-md-block">
-                                    <button type="submit" class="btn btn-outline-primary">Submit</button>
-                                    {/* <!-- <button type="reset" class="btn btn-outline-danger justify-content-center">Reset</button> --> */}
+                                <div className="d-grid gap-3 col-2 mx-auto d-md-block">
+                                    <button type="submit" className="btn btn-outline-primary">Submit</button>
+                                    {/* <!-- <button type="reset" className="btn btn-outline-danger justify-content-center">Reset</button> --> */}
 
                                 </div>
-                                <div class="modal-footer">
-                                    <button type="reset" class="btn btn-outline-danger">Reset</button>
+                                <div className="modal-footer">
+                                    <button type="reset" className="btn btn-outline-danger">Reset</button>
                                 </div>
                             </form>
                         </div>
-                        {/* <!-- <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary">Save changes</button>
+                        {/* <!-- <div className="modal-footer">
+                            <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" className="btn btn-primary">Save changes</button>
                         </div> --> */}
                     </div>
                 </div>

@@ -1,24 +1,10 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
 import '../css/landing_page.css'
 import blockchainIncon from '../images/blockchain.png';
 import verifiedProfilesIcon from '../images/profile.png';
 import documentsIcon from '../images/documents.png'
 import { LoginContext } from "../App";
 
-export default function LandingPage({ email, password }) {
-    // const [loginData, setLoginData] = useState();
-    // const [prevComp, setPrevComp] = useState(<div></div>)
-    // useEffect(() => {
-    //     const getLoginData = () => {
-    //         axios.post('http://127.0.0.1:5000/login', { username: email, password: password }).then((data) => {
-    //             console.log(data);
-    //             setLoginData(data)
-    //             setPrevComp(<div>{data.toString()}</div>)
-    //         })
-    //     }
-    //     getLoginData();
-    // }, []);
+export default function LandingPage() {
     return (<div>
         <div className="m-auto px-2 py-3 landing-page-app-bar">
             <div className="row align-items-center">
