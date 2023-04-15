@@ -4,7 +4,7 @@ body {
     font-family: monospace;
     background: linear-gradient(120deg, #2980b9, #8e44ab);
     height: 100vh;
-    overflow: hidden;
+    /* overflow: hidden; */
 }
 
 .center {

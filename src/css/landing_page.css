@@ -13,10 +13,8 @@
 }
 
 .landing-page-special-btn {
-    border: none;
+    border: 1px solid black;
     border-radius: 5px;
-    background-color: teal;
-    color: white;
 }
 
 .landing-page-banner-heading {
@@ -30,8 +28,23 @@
 }
 
 .landing-page-banner-special-btn {
-    font-size: 32px;
+    border: none;
+    border-radius: 20px;
+    background-color: teal;
     color: white;
+    font-size: 32px;
 }
 
+.landing-page-feature-holder {
+    border-top-right-radius: 25px;
+    border-top-left-radius: 25px;
 
+}
+
+.landing-page-feature-heading {
+    font-size: 50px;
+}
+
+.landing-page-feature-subtitle {
+    font-size: 28px;
+}
