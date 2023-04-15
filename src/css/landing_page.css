@@ -1,0 +1,37 @@
+.landing-page-app-bar {
+    background-color: white;
+}
+
+.landing-page-link {
+    text-decoration: none;
+    color: grey;
+}
+
+.landing-page-link:hover {
+    text-decoration: none;
+    color: black;
+}
+
+.landing-page-special-btn {
+    border: none;
+    border-radius: 5px;
+    background-color: teal;
+    color: white;
+}
+
+.landing-page-banner-heading {
+    font-size: 150px;
+    color: white;
+}
+
+.landing-page-banner-subitle {
+    font-size: 48px;
+    color: white;
+}
+
+.landing-page-banner-special-btn {
+    font-size: 32px;
+    color: white;
+}
+
+
