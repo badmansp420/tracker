@@ -37,11 +37,17 @@ function App() {
     <Track/> */}
       <LoginContext.Consumer>
         {(context, setContext) => {
+        console.log(context);
+         if(context.context.login.loggedin && context.context.login.username && context.context.login.password) {
+          console.log(context)
+          return <UserDashboard email={context.username} password={context.password}/>
+         } else {
           if(!(context.context.login.underlogin)) {
-            return <LandingPage email={context.context.login.username} password={context.context.login.password}/>
+            return <LandingPage/>
           } else {
             if (detail.isLoginPage) return <UserLogin handleClick={(e)=>onSubmitHandle(e)}/>
           }
+         }
         }}
       </LoginContext.Consumer>
       {/* <UserSignUp/> */}
