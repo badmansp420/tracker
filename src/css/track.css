@@ -1,0 +1,12 @@
+.track-container{
+    width: 600px;
+    margin: 10px auto ;
+    /* height: 350px; */
+    border-radius: 10px;
+}
+.track-list{
+    list-style: none
+}
+.track-list li{
+    font-size: 22px;
+}

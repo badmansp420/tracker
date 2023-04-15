@@ -1,0 +1,31 @@
+header{
+    height: 65px;
+    background: linear-gradient(90.41deg , #f7373a 1.14% , #e53737);
+    font-family: sans-serif;
+}
+
+.header-main{
+    display: flex;
+    align-items: center;
+}
+
+.header-section{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.header-project{
+    margin: 1rem;
+}
+
+.nav-logo{
+    height: 2rem;
+    width: 2rem;
+    margin: 0.95rem ;
+}
+
+.logout{
+    /* justify-content: end; */
+    margin-right: 2%;
+}
