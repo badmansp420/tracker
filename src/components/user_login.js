@@ -42,7 +42,7 @@ export default function UserLogin() {
                     </div>
                     <LoginContext.Consumer>
                         {(context, setContext) =>  {
-                            return (<button type="button" name="submit" onClick={(event) => {
+                            return (<button type="button" id='login' name="submit" onClick={(event) => {
                                 console.log(email, password);
                                 context.setContext({
                                     login: {
@@ -57,7 +57,7 @@ export default function UserLogin() {
                         }
                     </LoginContext.Consumer>
                     <div className="signup">
-                        <button type='button' onClick={signuphandler}>SignUp</button>
+                        <button type='button' id='signup' onClick={signuphandler}>SignUp</button>
                     </div>
                     {/* submit script */}
 
@@ -107,8 +107,8 @@ export default function UserLogin() {
                                 <input type="text" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
                             </div>
                             <button type="submit" className="btn btn-primary">Sign Up</button>
-                            <div className="mb-3" id="login">
-                                <p>If Already Have Account? <button type="button" onClick={loginhandler}> Log In</button></p>
+                            <div className="mb-3" id="loginbtn">
+                                <p id='loginfont'>If Already Have An Account? <button type="button" id='loginbtn' onClick={loginhandler}> Log In</button></p>
                             </div>
                         </form>
                     </div>
