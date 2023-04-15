@@ -7,24 +7,25 @@ import React from 'react';
 import './App.css';
 
 function App() {
-  const [ detail , setDetails ] = React.useState({
-    username : null , 
-    password : null , 
-    isLoginPage : true , 
-    isDashBoard : false , 
+  // const [ detail , setDetails ] = React.useState({
+  //   username : null , 
+  //   password : null , 
+  //   isLoginPage : true , 
+  //   isDashBoard : false , 
    
-  })
-  function onSubmitHandle(e){
-    e.preventDefault()
-    console.log("hello");;
-  }
+  // })
+  // function onSubmitHandle(e){
+  //   e.preventDefault()
+  //   console.log("hello");;
+  // }
   return (
     <div className="App">
       {/* <Navbar/>
     <Track/> */}
-      {detail.isLoginPage && <UserLogin handleClick={(e)=>onSubmitHandle(e)}/>}
-      {/* <UserSignUp/> */}
-      {/* <UserDashboard/> */}
+      {/* {detail.isLoginPage && <UserLogin handleClick={(e)=>onSubmitHandle(e)}/>} */}
+      {/* <UserLogin/> */}
+      <UserDashboard/>
+      {/* <Landing/> */}
     </div>
   );
 }
